@@ -1,0 +1,30 @@
+body{
+    background-color: color-mix(in srgb, wheat 40%, salmon 20%);
+    color: black;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#headSection, #rateDisplay, #fareDisplayArea {
+    text-align: center;
+    line-height: 1rem;
+}
+
+fieldset{
+    background-color: hsla(313, 18%, 39%, 0.603);
+    max-width: 20%;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+fieldset legend {
+    font-weight: bold;
+    margin: auto;
+    font-size: 1.25rem;
+}
+input[type="text"], input[type="submit"]{
+    width: 100%;
+    height: 2em;
+    border: none;
+    border-radius: 5px;
+}
+
