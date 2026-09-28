@@ -13,8 +13,12 @@ const rate = new Map();
 //setting the number codes for each location
 rate.set("ordinary", 2.25);
 rate.set("airconditioned", 2.45);
+rate.set("deluxe", 2.60);
+
+
 rate.set("regular", 1.00);
 rate.set("sp", 0.80);
+
 
 const numCodes = new Map();
 //setting the number codes for each location

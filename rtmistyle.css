@@ -9,12 +9,17 @@ body{
     line-height: 1rem;
 }
 
-fieldset{
+fieldset {
     background-color: hsla(313, 18%, 39%, 0.603);
-    max-width: 20%;
+    width: 30%;
     margin: auto;
     margin-bottom: 1rem;
-    overflow: visible;
+}
+
+@media (max-width: 600px) {
+    fieldset {
+        width: 90%;
+    }
 }
 
 fieldset legend {
