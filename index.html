@@ -23,6 +23,9 @@
             
             <input name="busType" id="airconditioned" type="radio" value="airconditioned">
             <label for="airconditioned">Air-Conditioned</label><br/>
+
+            <input name="busType" id="deluxe" type="radio" value="deluxe">
+            <label for="deluxe">Deluxe</label><br/>
         </fieldset>
 
 
@@ -30,7 +33,7 @@
         <fieldset>
             <legend>Ticket Maker</legend>
     
-            <p id="rateDisplay">RATE 2.25 per kilometer</p>
+            <p id="rateDisplay">RATE 2.25 per km</p>
             <label for="startLocation">Starting Location</label>
             <input id="startLocation" type="text" placeholder="Iligan City">
             <br/>
@@ -43,23 +46,25 @@
             <label for="regular">Regular</label><br/>
             
             <input name="fareType" id="student" type="radio" value="sp">
-            <label for="student">Student</label><br/>
+            <label for="student">Student / Senior Citizen / PwD</label><br/>
 
-            <input name="fareType" id="senior" type="radio" value="sp">
-            <label for="senior">Senior Citizen</label><br/>
-
-            <input name="fareType" id="pwd" type="radio" value="sp">
-            <label for="pwd">Person with Disability</label><br/>
  
             <br/>
             <input type="submit" value="Submit" onclick="CalculateFare()">
         
         </fieldset>
-        
+    
         <fieldset id="fareDisplayArea">
             <legend>FARE</legend>
                <p id="displayFare"></p>
         </fieldset>
+
+        <fieldset id="suggestionField">
+            <legend>Suggestions</legend>
+               <div id="suggestions"></div>   
+        </fieldset>
+ 
+    
     </body>
     <script src="rtmiscript.js"> </script>
         
