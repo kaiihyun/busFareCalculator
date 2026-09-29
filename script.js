@@ -10,7 +10,6 @@ let endCode = 1;
 const minFare = 15;
 let fare = minFare;
 const rate = new Map();
-
 //setting the number codes for each location
 rate.set("ordinary", 2.25);
 rate.set("airconditioned", 2.45);
@@ -24,8 +23,8 @@ rate.set("sp", 0.80);
 const numCodes = new Map();
 
 // setting the number codes for each location
-numCodes.set("Iligan city", 85);
-numCodes.set("Buru-un", 97)
+numCodes.set("Iligan City", 85);
+numCodes.set("Buru-Un", 97)
 numCodes.set("Magoong", 100);
 numCodes.set("Samburon", 101);
 numCodes.set("Larapan", 102);
@@ -34,17 +33,17 @@ numCodes.set("Libertad", 104);
 numCodes.set("Tacub", 105);
 numCodes.set("Bagumbayan", 106);
 numCodes.set("Tugar", 108);
-numCodes.set("KawitOriental", 109);
-numCodes.set("KawitOccidental", 110);
+numCodes.set("Kawit Oriental", 109);
+numCodes.set("Kawit Occidental", 110);
 numCodes.set("Rupagan", 111);
 numCodes.set("Minaulon", 113);
 numCodes.set("Demologan", 114);
 numCodes.set("Binuni", 115);
 numCodes.set("Bacolod", 116);
 numCodes.set("Esperanza", 117);
-numCodes.set("Liangan east", 121);
-numCodes.set("Liangan west", 122);
-numCodes.set("Claro m. recto", 123);
+numCodes.set("Liangan East", 121);
+numCodes.set("Liangan West", 122);
+numCodes.set("Claro M. Recto", 123);
 numCodes.set("Maigo", 124);
 numCodes.set("Kolambugan", 133);
 numCodes.set("Mukas", 140);
@@ -82,14 +81,16 @@ function Capitalize(name){
     if (name == null){
         return name;
     }else{
-    // FIX: trim first, so leading spaces don't break the lookup
     let formattedName = name.trim();
-    // NEW: if it matches a numCodes key ignoring case, return the exact key
-    // (needed for names like "KawitOriental", which the old formatting broke)
-    for (const key of numCodes.keys()){
-        if (key.toLowerCase() === formattedName.toLowerCase()) return key;
-    }
-    formattedName = formattedName.substring(0,1).toUpperCase() + formattedName.substring(1).toLowerCase();
+    // UPDATED: Proper Name formatting — lowercase everything, then capitalize
+    // the first letter of the string and the first letter after any space or
+    // hyphen. This correctly handles multi-word names ("Liangan east" ->
+    // "Liangan East"), initials followed by a period ("claro m. recto" ->
+    // "Claro M. Recto"), and hyphenated names ("buru-un" -> "Buru-Un"),
+    // and always matches the numCodes keys, which are stored the same way.
+    formattedName = formattedName
+        .toLowerCase()
+        .replace(/(^|[\s-])([a-z])/g, (match, sep, letter) => sep + letter.toUpperCase());
 
     return formattedName;
     }
@@ -351,6 +352,35 @@ document.getElementById("fareForm").addEventListener("submit", e => {
     startAC.close(); endAC.close();
     CalculateFare();
 });
+
+/* =====================================================================
+   NEW: ROUTES SIDE PANEL
+   Lists every location name from the existing numCodes database (names
+   only, no codes). The tab slides the panel open/closed; interacting
+   with the ticket builder always closes it again.
+   ===================================================================== */
+const ticketWrap  = document.getElementById("ticketWrap");
+const routesTab   = document.getElementById("routesTab");
+const routesList  = document.getElementById("routesList");
+
+[...numCodes.entries()].sort((a, b) => a[1] - b[1]).forEach(([name]) => {
+    const li = document.createElement("li");
+    li.textContent = name; // name only, never the numeric code
+    routesList.appendChild(li);
+});
+
+function setRoutesOpen(open){
+    ticketWrap.classList.toggle("is-open", open);
+    routesTab.setAttribute("aria-expanded", String(open));
+}
+
+routesTab.addEventListener("click", () => {
+    setRoutesOpen(!ticketWrap.classList.contains("is-open"));
+});
+
+// Any interaction with the ticket builder closes the panel again.
+document.getElementById("fareForm").addEventListener("click", () => setRoutesOpen(false));
+
 
 // initial state
 DisplayRate();

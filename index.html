@@ -16,7 +16,7 @@
     <header class="copy">
       <p class="kicker"><span class="bookmark"></span>FAIR FARES</p>
       <h1 class="title"><span>BUS TICKER</span><span class="accent">BUILDER</span></h1>
-      <p class="tagline">No guesswork. Just the right fare, every ride.</p>
+      <p class="tagline">No more guessing games. Just the right fare, every ride.</p>
       <p class="tagline"><strong>Developer's Note:</strong> This website is still in its development stages, so there might be some inaccuracies.</p>
     </header>
 
@@ -34,6 +34,17 @@
         </dl>
       </div>
     </section>
+
+    <div class="ticket-wrap" id="ticketWrap">
+      <div class="routes-panel" id="routesPanel" aria-hidden="true">
+        <div class="routes-content">
+          <div class="routes-inner">
+            <h3>ROUTES</h3>
+            <ul id="routesList"></ul>
+          </div>
+        </div>
+      </div>
+      <button class="routes-tab" id="routesTab" type="button" aria-expanded="false" aria-controls="routesPanel">ROUTES</button>
 
     <form class="ticket" id="fareForm" novalidate>
       <div class="ticket-head">
@@ -87,6 +98,7 @@
 
       <button class="cta" type="submit"><span aria-hidden="true">←</span><span>CALCULATE FARE</span></button>
     </form>
+    </div>
 
     <footer class="rule" aria-hidden="true"><span>FAIR FARES</span><i></i><span>RIGHT RIDE</span></footer>
   </main>

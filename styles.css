@@ -30,24 +30,26 @@ svg { display: block; }
 }
 .copy   { grid-area: copy; container-type: inline-size; }
 .stub   { grid-area: stub; container-type: inline-size; }
-.ticket { grid-area: ticket; }
+.ticket-wrap { grid-area: ticket; position: relative; width: 100%; max-width: 33.25rem; justify-self: center; align-self: start; margin-top: 1rem; }
 .rule   { grid-area: rule; }
 
 /* ---------- Page-load entrance ---------- */
 @keyframes flyInTop    { from { opacity: 0; transform: translateY(-2.5rem); } to { opacity: 1; transform: translateY(0); } }
-@keyframes flyInRight  { from { opacity: 0; transform: translateX(3.5rem) rotate(1deg); } to { opacity: 1; transform: translateX(0) rotate(1deg); } }
+@keyframes flyInRight  { from { opacity: 0; transform: translateX(3.5rem); } to { opacity: 1; transform: translateX(0); } }
 @keyframes flyInBottom { from { opacity: 0; transform: translateY(3rem); } to { opacity: 1; transform: translateY(0); } }
 
-.copy   { animation: flyInTop .6s cubic-bezier(.19,1,.22,1) both; }
-.ticket { animation: flyInRight .6s .08s cubic-bezier(.19,1,.22,1) both; }
-.stub   { animation: flyInBottom .6s .16s cubic-bezier(.19,1,.22,1) both; }
+.copy        { animation: flyInTop .6s cubic-bezier(.19,1,.22,1) both; }
+.ticket-wrap { animation: flyInRight .6s .08s cubic-bezier(.19,1,.22,1) both; }
+.stub        { animation: flyInBottom .6s .16s cubic-bezier(.19,1,.22,1) both; }
 @media (min-width: 60rem) {
   .page {
     grid-template-columns: minmax(0, 1fr) minmax(0, 33.25rem);
     grid-template-areas: "copy ticket" "stub ticket" "rule rule";
     align-content: center; min-height: 100dvh;
+    column-gap: clamp(.5rem, 1.5vw, 1.25rem); /* tighter than the row gap, pulls the ticket toward the stub */
   }
   .stub { align-self: start; }
+  .ticket-wrap { margin-left: -1.25rem; margin-top: 2rem; } /* subtle shift toward the stub and down; panel still has room to open on the right */
 }
 
 /* ---------- Headline ---------- */
@@ -94,12 +96,64 @@ svg { display: block; }
 /* ---------- Ticket form ---------- */
 .ticket {
   position: relative; z-index: 2; container: ticket / inline-size;
-  width: 100%; max-width: 33.25rem; justify-self: center;
+  width: 100%;
   background: var(--cream);
   padding: 1.375rem clamp(1rem, 4.5vw, 1.5rem) 1.15rem;
   display: flex; flex-direction: column; gap: 1.1rem;
   transform: rotate(1deg);
-  filter: drop-shadow(clamp(.5rem, 2vw, .8rem) clamp(.5rem, 2vw, .8rem) 0 var(--red));
+}
+
+/* ---------- Routes side panel (the red rectangle behind the ticket) ---------- */
+.routes-panel {
+  position: absolute; top: 13px; left: 13px; right: -13px; bottom: -13px;
+  z-index: 1; overflow: hidden;
+  background: var(--red);
+  transform: rotate(1deg) translateX(0); /* same tilt as the ticket */
+  transition: transform .4s cubic-bezier(.19,1,.22,1);
+}
+.ticket-wrap.is-open .routes-panel { transform: rotate(1deg) translateX(30%); }
+
+.routes-content { position: absolute; inset: 0; display: flex; justify-content: flex-end; }
+.routes-inner {
+  width: 34%; min-width: 8rem; height: 100%;
+  padding: 2.5rem .75rem .75rem 1rem;
+  overflow: hidden;                 /* no scrollbar while closed */
+  color: transparent;               /* text invisible against the red panel while closed */
+  pointer-events: none;
+  transition: color .2s;
+}
+.ticket-wrap.is-open .routes-inner {
+  overflow-y: auto;                 /* scrollbar only appears once open */
+  color: var(--cream);
+  pointer-events: auto;
+}
+.routes-inner h3 { font-size: .7rem; font-weight: 800; letter-spacing: .14em; margin-bottom: .6rem; opacity: .85; }
+.routes-inner ul { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+.routes-inner li { font-size: .8rem; font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+
+.routes-tab {
+  position: absolute; top: 0; right: .75rem; z-index: 3;
+  transform: translateY(-72%) rotate(-3deg);
+  background: var(--red); color: var(--cream);
+  font: 700 .7rem var(--text); letter-spacing: .16em;
+  padding: .55rem .65rem .4rem; border-radius: 4px 4px 0 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,.2);
+  transition: background-color .15s, transform .15s;
+}
+.routes-tab:hover { background: var(--red-btn); }
+.routes-tab:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.ticket-wrap.is-open .routes-tab { transform: translateY(-72%) rotate(0deg); }
+
+@media (max-width: 26rem) {
+  .routes-inner { padding-top: 2rem; }
+  .routes-tab { right: .4rem; font-size: .62rem; }
+}
+
+/* Below 700px: drop the activation tab entirely. The red panel stays as a
+   backdrop behind the ticket, but with no tab it can never be opened, so it
+   never risks introducing horizontal scroll on small/medium screens. */
+@media (max-width: 700px) {
+  .routes-tab { display: none; }
 }
 .ticket-head { position: relative; display: flex; align-items: center; gap: .75rem; padding-bottom: 1.15rem; flex-wrap: wrap; }
 /* straight broken line, diagonal breaks (same pattern as the footer) */
@@ -113,7 +167,23 @@ svg { display: block; }
 .ticket-head p { font-size: .65rem; color: #75736e; }
 .tag { border: 1px solid #aaa69e; padding: .25rem .45rem; font-size: .55rem; font-weight: 700; letter-spacing: .1em; }
 
-.label, .group legend { display: block; padding: 0; margin: 0; font-size: clamp(.95rem, .87rem + .4vw, 1.15rem); line-height: 1.1; font-weight: 700; letter-spacing: .1em; color: var(--muted); }
+.label, .group legend {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: clamp(.95rem, .87rem + .4vw, 1.15rem);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--muted);
+}
+
+.rate {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: .03em;
+}
 
 /* Location inputs = most prominent controls */
 .route { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: .625rem; align-items: end; }
@@ -121,7 +191,7 @@ svg { display: block; }
 .input-wrap { position: relative; }
 .input-wrap input {
   width: 100%; min-height: 3.25rem; padding: .5rem .75rem;
-  border: 2px solid var(--ink); border-radius: 0; background: #fff;
+  border: 1.5px solid rgba(34, 34, 32, .3); border-radius: 0; background: #fff;
   font: 700 1rem var(--text); color: var(--ink);
 }
 .input-wrap input::placeholder { color: var(--muted); opacity: 1; }
@@ -187,7 +257,6 @@ svg { display: block; }
 .option input:checked + .face { background: #46453f; border-color: #46453f; color: #fff; }
 .option input:checked + .face small { color: var(--yellow); }
 .option input:focus-visible + .face { outline: 3px solid var(--yellow); outline-offset: 2px; }
-.rate { font-size: .75rem; font-weight: 600; color: var(--ink); letter-spacing: .03em; }
 
 /* ---------- Calculate button ---------- */
 .cta {
