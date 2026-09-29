@@ -1,72 +1,96 @@
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>RTMI Fare System</title>
-        <link rel="stylesheet" href="rtmistyle.css">
-    </head>
-    <body>
-        <div id="headSection"> 
-            <h1>The Wheels on the BUS</h1>
-            <h1>Go Round and Round</h1>
-            <h2>Fare Calculator</h2>
-            <p>Calculates your bus fare one place to another.</p>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bus Ticker Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="deco" aria-hidden="true"><i class="d-ring"></i><i class="d-tri"></i><i class="d-sq"></i><i class="d-circle"></i><i class="d-plus"></i><i class="d-bars"></i></div>
 
+  <main class="page">
+    <header class="copy">
+      <p class="kicker"><span class="bookmark"></span>FAIR FARES</p>
+      <h1 class="title"><span>BUS TICKER</span><span class="accent">BUILDER</span></h1>
+      <p class="tagline">No guesswork. Just the right fare, every ride.</p>
+      <p class="tagline"><strong>Developer's Note:</strong> This website is still in its development stages, so there might be some inaccuracies.</p>
+    </header>
+
+    <!-- Ticket stub: updates live from the form -->
+    <section class="stub" aria-label="Fare ticket">
+      <div class="stub-inner">
+        <p class="stub-label" id="fareLabel">CALCULATED FARE</p>
+        <p class="price"><span class="cur">₱</span><span id="fareAmount" aria-live="polite">—</span></p>
+        <p class="status" id="displayFare" aria-live="polite"></p>
+        <dl class="details">
+          <div><dt>BUS TYPE</dt><dd id="outBus">Ordinary</dd></div>
+          <div><dt>FARE TYPE</dt><dd id="outFare">Regular</dd></div>
+          <div><dt>STARTING LOCATION</dt><dd id="outFrom">—</dd></div>
+          <div><dt>DESTINATION</dt><dd id="outTo">—</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <form class="ticket" id="fareForm" novalidate>
+      <div class="ticket-head">
+        <svg class="ticket-icon" viewBox="0 0 20.25 28.125" aria-hidden="true"><path d="M0 0H20.25V28.125L10.125 21.375 0 28.125V0Z" fill="#ec2e24"/></svg>
+        <div>
+          <h2>BUILD YOUR TICKET</h2>
+          <p>Choose your starting location and destination</p>
+        </div>
+        <span class="tag">RTMI 2026</span>
+      </div>
+
+      <div class="route">
+        <div class="field">
+          <label class="label" for="startLocation">FROM</label>
+          <div class="input-wrap">
+            <input type="text" id="startLocation" name="from" placeholder="Iligan City" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="startSuggest">
+            <ul class="suggest" id="startSuggest" role="listbox" hidden></ul>
+          </div>
         </div>
 
+        <button class="swap" type="button" id="swapBtn" aria-label="Swap" data-tip="Swap">
+          <svg viewBox="0 0 19 19" fill="none" stroke="#222220" stroke-width="1.58" stroke-linecap="round" aria-hidden="true"><circle cx="4.75" cy="14.25" r="1.98"/><circle cx="14.25" cy="4.75" r="1.98"/><path d="M6.33 14.25H8.31C12.27 14.25 9.5 4.75 13.06 4.75"/></svg>
+        </button>
 
-        <fieldset>
-            <legend>Bus type</legend>
-            <input name="busType" id="ordinary" type="radio" value="ordinary" checked>
-            <label for="ordinary">Ordinary Bus</label><br/>
-            
-            <input name="busType" id="airconditioned" type="radio" value="airconditioned">
-            <label for="airconditioned">Air-Conditioned</label><br/>
+        <div class="field">
+          <label class="label" for="endLocation">TO</label>
+          <div class="input-wrap">
+            <input type="text" id="endLocation" name="to" placeholder="Mukas" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="endSuggest">
+            <ul class="suggest" id="endSuggest" role="listbox" hidden></ul>
+          </div>
+        </div>
+      </div>
 
-            <input name="busType" id="deluxe" type="radio" value="deluxe">
-            <label for="deluxe">Deluxe</label><br/>
-        </fieldset>
+      <fieldset class="group">
+        <legend class="label">BUS TYPE</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="busType" value="ordinary" checked><span class="face"><b>ORDINARY</b><small>Standard bus</small></span></label>
+          <label class="option"><input type="radio" name="busType" value="airconditioned"><span class="face"><b>AIRCON</b><small>Air-conditioned</small></span></label>
+          <label class="option"><input type="radio" name="busType" value="deluxe"><span class="face"><b>DELUXE</b><small>Deluxe bus</small></span></label>
+        </div>
+        <p class="rate" id="rateDisplay"></p>
+      </fieldset>
 
+      <fieldset class="group">
+        <legend class="label">FARE TYPE</legend>
+        <div class="options options-2">
+          <label class="option"><input type="radio" name="fareType" value="regular" checked><span class="face"><b>REGULAR</b><small>Full fare</small></span></label>
+          <label class="option"><input type="radio" name="fareType" value="sp"><span class="face"><b>SP</b><small>Students, Seniors, PWD</small></span></label>
+        </div>
+      </fieldset>
 
+      <button class="cta" type="submit"><span aria-hidden="true">←</span><span>CALCULATE FARE</span></button>
+    </form>
 
-        <fieldset>
-            <legend>Ticket Maker</legend>
-    
-            <p id="rateDisplay">RATE 2.25 per km</p>
-            <label for="startLocation">Starting Location</label>
-            <input id="startLocation" type="text" placeholder="Iligan City">
-            <br/>
-            <label for="endLocation">Destination</label>
-            <input id="endLocation" type="text" placeholder="Rupagan">
-            <br/><br/>
+    <footer class="rule" aria-hidden="true"><span>FAIR FARES</span><i></i><span>RIGHT RIDE</span></footer>
+  </main>
 
-          
-            <input name="fareType" id="regular" type="radio" value="regular" checked>
-            <label for="regular">Regular</label><br/>
-            
-            <input name="fareType" id="student" type="radio" value="sp">
-            <label for="student">Student / Senior Citizen / PwD</label><br/>
-
- 
-            <br/>
-            <input type="submit" value="Submit" onclick="CalculateFare()">
-        
-        </fieldset>
-    
-        <fieldset id="fareDisplayArea">
-            <legend>FARE</legend>
-               <p id="displayFare"></p>
-        </fieldset>
-
-        <fieldset id="suggestionField">
-            <legend>Suggestions</legend>
-               <div id="suggestions"></div>   
-        </fieldset>
- 
-    
-    </body>
-    <script src="rtmiscript.js"> </script>
-        
-   
+  <script src="script.js"></script>
+</body>
 </html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://cdn.divriots.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <style>
+/* vietnamese */
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3K8-C8QSw.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3K9-C8QSw.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3Kz-C8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb54C-s0.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb94C-s0.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+    <style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://cdn.divriots.com/fonts/inter/v3.19/Inter.var.woff2') format('woff2');
+  font-variation-settings: 'slnt' -10;
+}</style>
+    <style media="all">
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: auto;
+}
+
+button {
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+}a {
+  color: inherit;
+  text-decoration: inherit;
+}
+input {
+  border: none;
+  font: inherit;
+  outline: none;
+  background-color: inherit;
+}
+button {
+  border-style: none;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  font: inherit;
+  line-height: normal;
+  color: inherit;
+}
+textarea {
+  font: inherit;
+  background-color: inherit;
+}
+select {
+  font: inherit;
+  background-color: inherit;
+}
+img {
+  display: block;
+}
+picture {
+  display: block;
+}
+video {
+  display: block;
+}
+canvas {
+  display: block;
+}
+svg {
+  display: block;
+}
+
+[data-visible='false']{
+  display:none!important;
+}
+
+.before-hidden::before {
+  display:none;
+}
+
+.after-hidden::after {
+  display:none;
+}
+
+.before-visible::before {
+  content: "";
+}
+
+.after-visible::after {
+  content: "";
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+</style>
+    <meta charset="utf-8">
+  </head>
+  <body style="display: grid;background-color: #222220;">
+    <div style="background-color: #222220;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;margin: 0px auto 0px 0px;">
+      <div style="width: 100%;height: 900px;position: relative;flex-shrink: 0;">
+        <div style="background-color: #222220;overflow: hidden;left: 0px;top: 0px;right: 0px;width: 100%;height: 900px;mix-blend-mode: normal;isolation: isolate;position: absolute;">
+          <div style="display: flex;flex-direction: row;grid-column-gap: 14px;align-items: center;justify-content: center;left: 72px;right: 72px;bottom: 20px;width: calc(-144px + 100%);position: absolute;">
+            <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;letter-spacing: 1.3px;color: rgba(245,240,231,0.45);width: max-content;position: relative;flex-shrink: 0;">FAIR FARES</span></div>
+            <div style="background-image: linear-gradient(135deg, #ec2e24 0%, #ec2e24 1%, rgba(236,46,36,0) 1%, rgba(236,46,36,0) 1.8%, #ec2e24 1.8%, #ec2e24 2.8%, rgba(236,46,36,0) 2.8%, rgba(236,46,36,0) 3.6%, #ec2e24 3.6%, #ec2e24 4.6%, rgba(236,46,36,0) 4.6%, rgba(236,46,36,0) 5.4%, #ec2e24 5.4%, #ec2e24 6.4%, rgba(236,46,36,0) 6.4%, rgba(236,46,36,0) 7.2%, #ec2e24 7.2%, #ec2e24 8.3%, rgba(236,46,36,0) 8.3%, rgba(236,46,36,0) 9%, #ec2e24 9%, #ec2e24 10.1%, rgba(236,46,36,0) 10.1%, rgba(236,46,36,0) 10.8%, #ec2e24 10.8%, #ec2e24 11.9%, rgba(236,46,36,0) 11.9%, rgba(236,46,36,0) 12.6%, #ec2e24 12.6%, #ec2e24 13.7%, rgba(236,46,36,0) 13.7%, rgba(236,46,36,0) 14.4%, #ec2e24 14.4%, #ec2e24 15.5%, rgba(236,46,36,0) 15.5%, rgba(236,46,36,0) 16.2%, #ec2e24 16.2%, #ec2e24 17.3%, rgba(236,46,36,0) 17.3%, rgba(236,46,36,0) 18%, #ec2e24 18%, #ec2e24 19.1%, rgba(236,46,36,0) 19.1%, rgba(236,46,36,0) 19.9%, #ec2e24 19.9%, #ec2e24 20.9%, rgba(236,46,36,0) 20.9%, rgba(236,46,36,0) 21.7%, #ec2e24 21.7%, #ec2e24 22.7%, rgba(236,46,36,0) 22.7%, rgba(236,46,36,0) 23.5%, #ec2e24 23.5%, #ec2e24 24.5%, rgba(236,46,36,0) 24.5%, rgba(236,46,36,0) 25.3%, #ec2e24 25.3%, #ec2e24 26.3%, rgba(236,46,36,0) 26.3%, rgba(236,46,36,0) 27.1%, #ec2e24 27.1%, #ec2e24 28.1%, rgba(236,46,36,0) 28.1%, rgba(236,46,36,0) 28.9%, #ec2e24 28.9%, #ec2e24 29.9%, rgba(236,46,36,0) 29.9%, rgba(236,46,36,0) 30.7%, #ec2e24 30.7%, #ec2e24 31.7%, rgba(236,46,36,0) 31.7%, rgba(236,46,36,0) 32.5%, #ec2e24 32.5%, #ec2e24 33.5%, rgba(236,46,36,0) 33.5%, rgba(236,46,36,0) 34.3%, #ec2e24 34.3%, #ec2e24 35.3%, rgba(236,46,36,0) 35.3%, rgba(236,46,36,0) 36.1%, #ec2e24 36.1%, #ec2e24 37.1%, rgba(236,46,36,0) 37.1%, rgba(236,46,36,0) 37.9%, #ec2e24 37.9%, #ec2e24 38.9%, rgba(236,46,36,0) 38.9%, rgba(236,46,36,0) 39.7%, #ec2e24 39.7%, #ec2e24 40.7%, rgba(236,46,36,0) 40.7%, rgba(236,46,36,0) 41.5%, #ec2e24 41.5%, #ec2e24 42.5%, rgba(236,46,36,0) 42.5%, rgba(236,46,36,0) 43.3%, #ec2e24 43.3%, #ec2e24 44.4%, rgba(236,46,36,0) 44.4%, rgba(236,46,36,0) 45.1%, #ec2e24 45.1%, #ec2e24 46.2%, rgba(236,46,36,0) 46.2%, rgba(236,46,36,0) 46.9%, #ec2e24 46.9%, #ec2e24 48%, rgba(236,46,36,0) 48%, rgba(236,46,36,0) 48.7%, #ec2e24 48.7%, #ec2e24 49.8%, rgba(236,46,36,0) 49.8%, rgba(236,46,36,0) 50.5%, #ec2e24 50.5%, #ec2e24 51.6%, rgba(236,46,36,0) 51.6%, rgba(236,46,36,0) 52.3%, #ec2e24 52.3%, #ec2e24 53.4%, rgba(236,46,36,0) 53.4%, rgba(236,46,36,0) 54.1%, #ec2e24 54.1%, #ec2e24 55.2%, rgba(236,46,36,0) 55.2%, rgba(236,46,36,0) 56%, #ec2e24 56%, #ec2e24 57%, rgba(236,46,36,0) 57%, rgba(236,46,36,0) 57.8%, #ec2e24 57.8%, #ec2e24 58.8%, rgba(236,46,36,0) 58.8%, rgba(236,46,36,0) 59.6%, #ec2e24 59.6%, #ec2e24 60.6%, rgba(236,46,36,0) 60.6%, rgba(236,46,36,0) 61.4%, #ec2e24 61.4%, #ec2e24 62.4%, rgba(236,46,36,0) 62.4%, rgba(236,46,36,0) 63.2%, #ec2e24 63.2%, #ec2e24 64.2%, rgba(236,46,36,0) 64.2%, rgba(236,46,36,0) 65%, #ec2e24 65%, #ec2e24 66%, rgba(236,46,36,0) 66%, rgba(236,46,36,0) 66.8%, #ec2e24 66.8%, #ec2e24 67.8%, rgba(236,46,36,0) 67.8%, rgba(236,46,36,0) 68.6%, #ec2e24 68.6%, #ec2e24 69.6%, rgba(236,46,36,0) 69.6%, rgba(236,46,36,0) 70.4%, #ec2e24 70.4%, #ec2e24 71.4%, rgba(236,46,36,0) 71.4%, rgba(236,46,36,0) 72.2%, #ec2e24 72.2%, #ec2e24 73.2%, rgba(236,46,36,0) 73.2%, rgba(236,46,36,0) 74%, #ec2e24 74%, #ec2e24 75%, rgba(236,46,36,0) 75%, rgba(236,46,36,0) 75.8%, #ec2e24 75.8%, #ec2e24 76.8%, rgba(236,46,36,0) 76.8%, rgba(236,46,36,0) 77.6%, #ec2e24 77.6%, #ec2e24 78.6%, rgba(236,46,36,0) 78.6%, rgba(236,46,36,0) 79.4%, #ec2e24 79.4%, #ec2e24 80.5%, rgba(236,46,36,0) 80.5%, rgba(236,46,36,0) 81.2%, #ec2e24 81.2%, #ec2e24 82.3%, rgba(236,46,36,0) 82.3%, rgba(236,46,36,0) 83%, #ec2e24 83%, #ec2e24 84.1%, rgba(236,46,36,0) 84.1%, rgba(236,46,36,0) 84.8%, #ec2e24 84.8%, #ec2e24 85.9%, rgba(236,46,36,0) 85.9%, rgba(236,46,36,0) 86.6%, #ec2e24 86.6%, #ec2e24 87.7%, rgba(236,46,36,0) 87.7%, rgba(236,46,36,0) 88.4%, #ec2e24 88.4%, #ec2e24 89.5%, rgba(236,46,36,0) 89.5%, rgba(236,46,36,0) 90.2%, #ec2e24 90.2%, #ec2e24 91.3%, rgba(236,46,36,0) 91.3%, rgba(236,46,36,0) 92.1%, #ec2e24 92.1%, #ec2e24 93.1%, rgba(236,46,36,0) 93.1%, rgba(236,46,36,0) 93.9%, #ec2e24 93.9%, #ec2e24 94.9%, rgba(236,46,36,0) 94.9%, rgba(236,46,36,0) 95.7%, #ec2e24 95.7%, #ec2e24 96.7%, rgba(236,46,36,0) 96.7%, rgba(236,46,36,0) 97.5%, #ec2e24 97.5%, #ec2e24 98.5%, rgba(236,46,36,0) 98.5%, rgba(236,46,36,0) 99.3%, #ec2e24 99.3%, #ec2e24 100%);background-blend-mode: normal;width: 1091.9px;height: 5px;opacity: 0.65;position: relative;flex-shrink: 0;"></div>
+            <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 98.8px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;letter-spacing: 1.3px;color: rgba(245,240,231,0.45);width: max-content;position: relative;flex-shrink: 0;">RIGHT RIDE</span></div>
+          </div>
+          <div style="overflow: hidden;left: -10.5px;top: -3px;right: 10.5px;bottom: 3px;width: 100%;height: 100%;position: absolute;">
+            <div style="transform-origin: 0 0;transform: rotate(14deg);left: 44.4px;top: 5.8px;width: 115.2px;height: 115.2px;position: absolute;">
+              <div style="background-color: #f1c92b;transform-origin: 0 0;left: 0px;top: 0px;width: 115.2px;height: 115.2px;opacity: 0.08;position: absolute;mask-image: url(&quot;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE1LjE5MDAwMjQ0MTQwNjI1IiBoZWlnaHQ9IjExNS4xOTAwMDI0NDE0MDYyNSIgdmlld0JveD0iMCAwIDExNS4xOTAwMDI0NDE0MDYyNSAxMTUuMTkwMDAyNDQxNDA2MjUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHN0eWxlPSJ0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7bGVmdDogMHB4O3RvcDogMHB4O3RyYW5zZm9ybTogbWF0cml4KDEsMCwwLDEsMCwwKTsiPjxnIGlkPSJtYXNrX3VuZGVmaW5lZCIgbWFza1VuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iMCIgeT0iMCIgd2lkdGg9IjExNS4xOTAwMDI0NDE0MDYyNSIgaGVpZ2h0PSIxMTUuMTkwMDAyNDQxNDA2MjUiIHN0eWxlPSJtYXNrLXR5cGU6IGFscGhhOyI+PGc+PHBhdGggZD0iTTU3LjU5NSAwTDExNS4xOSAxMTUuMTlIMEw1Ny41OTUgMFoiIHN0eWxlPSJmaWxsLXJ1bGU6IG5vbnplcm87ZmlsbDogIzAwMDsiIC8+PC9nPjwvZz48L3N2Zz4=&quot;);mask-repeat: no-repeat;mask-type: alpha;mask-position: 0px 0px;"></div>
+            </div>
+            <div style="border-width: 13px;border-style: solid;border-color: #f5f0e7;transform-origin: 0 0;transform: rotate(24deg);left: 435.4px;top: 15.5px;width: 72px;height: 72px;opacity: 0.07;position: absolute;"></div>
+            <div style="border-width: 8px;border-style: solid;border-color: #ec2e24;transform-origin: 0 0;transform: rotate(-18deg);left: 37.3px;top: 269px;width: 45px;height: 45px;opacity: 0.1;position: absolute;"></div>
+            <div style="border-width: 43px;border-style: solid;border-color: #ec2e24;border-radius: 259.2px;top: -227.4px;right: -168.9px;width: 518.4px;height: 518.4px;opacity: 0.14;position: absolute;"></div>
+            <div style="background-image: linear-gradient(90deg, rgba(255,255,255,0) 49.7%, #fff 50%, rgba(255,255,255,0) 50.3%), linear-gradient(180deg, rgba(255,255,255,0) 49.7%, #fff 50%, rgba(255,255,255,0) 50.3%);background-blend-mode: normal, normal;transform-origin: 0 0;transform: rotate(-8deg);left: -161.5px;top: 55.8px;right: -54.5px;bottom: -190.8px;width: calc(216px + 100%);height: calc(135px + 100%);opacity: 0.1;position: absolute;"></div>
+          </div>
+          <div style="background-color: #f5f0e7;display: flex;flex-direction: column;row-gap: 16px;align-items: start;justify-content: flex-start;transform-origin: 0 0;transform: rotate(1.3deg);left: calc(-17.4px + 50%);top: 18.8%;bottom: 21.2%;width: 532.3px;height: 59.9%;position: absolute;filter: drop-shadow(13px 13px 0px #ec2e24);padding: 22px 25px 0px;">
+            <div style="border-width: 0px 0px 2px;border-style: solid;border-color: #222220;width: 100%;height: 51px;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;transform-origin: 0 0;left: 0px;top: 0.5px;width: 39px;height: 34px;position: absolute;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;width: 27px;height: 34px;position: relative;flex-shrink: 0;">
+                  <div style="overflow: hidden;width: 100%;height: 100%;position: relative;flex-grow: 1;flex-basis: 0px;"><svg width="20.25" height="28.125" viewBox="0 0 20.25 28.125" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="left: 12.5%;top: 7%;right: 12.5%;bottom: 10.3%;width: 75%;height: 82.7%;position: absolute;"> <path d="M0 0H20.25V28.125L10.125 21.375 0 28.125V0Z" style="fill-rule: nonzero;fill: #ec2e24;"></path> </svg></div>
+                </div>
+              </div>
+              <div style="display: flex;flex-direction: column;row-gap: 1px;align-items: start;justify-content: flex-start;transform-origin: 0 0;left: 39px;top: calc(-25.5px + 50%);width: min-content;position: absolute;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 19.5px;font-size: 13px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;width: max-content;position: relative;flex-shrink: 0;">BUILD YOUR TICKET</span></div>
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 13.5px;font-size: 9px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #75736e;width: max-content;position: relative;flex-shrink: 0;">Choose your starting location and destination</span></div>
+              </div>
+              <div style="transform-origin: 0 0;top: 7.6px;right: 0.5px;width: 242.9px;height: 22px;position: absolute;">
+                <div style="border-width: 1px;border-style: solid;border-color: #aaa69e;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;top: -1.1px;right: 0.1px;width: min-content;position: absolute;padding: 4px 7px;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;letter-spacing: 1px;color: #222220;width: max-content;position: relative;flex-shrink: 0;">RTMI 2026</span></div>
+              </div>
+            </div>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 10px;align-items: end;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;padding: 1px 0px 0px;">
+              <div style="display: flex;flex-direction: column;row-gap: 6px;align-items: start;justify-content: flex-start;width: 212.4px;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">FROM</span></div>
+                <div style="border-width: 2px;border-style: solid;border-color: #222220;background-color: #fff;overflow: hidden;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;height: 47px;position: relative;flex-shrink: 0;padding: 13.5px 11px 0px;">
+                  <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                    <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                      <div class="dragScroll" style="overflow: auto;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #222220;width: 100%;position: relative;flex-shrink: 0;">Monumento</span></div>
+                    </div>
+                    <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 16.1px;height: 16.1px;opacity: 0;position: relative;flex-shrink: 0;padding: 2px 0px 0px;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 12px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #222220;width: max-content;position: relative;flex-shrink: 0;"> </span></div>
+                  </div>
+                </div>
+              </div>
+              <div style="background-color: #f1c92b;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;height: 38px;position: relative;flex-shrink: 0;padding: 9.5px 19px 0px 0px;"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" style="width: 19px;height: 19px;position: relative;flex-shrink: 0;"> <defs> <clippath id="def_0"> <rect x="0" y="0" width="19" height="19"> </rect> </clippath> </defs> <g style="clip-path: url(#def_0);"> <path d="M6.7292 14.25C6.7292 15.3431 5.8431 16.2292 4.75 16.2292 3.6569 16.2292 2.7708 15.3431 2.7708 14.25 2.7708 13.1569 3.6569 12.2708 4.75 12.2708 5.8431 12.2708 6.7292 13.1569 6.7292 14.25Z" style="stroke: #222220;stroke-width: 1.5833598375320435;stroke-linecap: round;"></path> <path d="M16.2292 4.75C16.2292 5.8431 15.3431 6.7292 14.25 6.7292 13.1569 6.7292 12.2708 5.8431 12.2708 4.75 12.2708 3.6569 13.1569 2.7708 14.25 2.7708 15.3431 2.7708 16.2292 3.6569 16.2292 4.75Z" style="stroke: #222220;stroke-width: 1.5833598375320435;stroke-linecap: round;"></path> <path d="M6.3333 14.25H8.3125C12.2708 14.25 9.5 4.75 13.0625 4.75" style="stroke: #222220;stroke-width: 1.5833598375320435;stroke-linecap: round;"></path> </g> </svg></div>
+              <div style="display: flex;flex-direction: column;row-gap: 6px;align-items: start;justify-content: flex-start;width: 212.4px;position: relative;flex-shrink: 0;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">TO</span></div>
+                <div style="border-width: 2px;border-style: solid;border-color: #222220;background-color: #fff;overflow: hidden;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;height: 47px;position: relative;flex-shrink: 0;padding: 13.5px 11px 0px;">
+                  <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                    <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-grow: 1;flex-basis: 0px;">
+                      <div class="dragScroll" style="overflow: auto;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;font-size: 12px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #222220;width: 100%;position: relative;flex-shrink: 0;">Ayala</span></div>
+                    </div>
+                    <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 16.1px;height: 16.1px;opacity: 0;position: relative;flex-shrink: 0;padding: 2px 0px 0px;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 12px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #222220;width: max-content;position: relative;flex-shrink: 0;"> </span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex;flex-direction: column;row-gap: 6px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 45.9px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;width: max-content;position: relative;flex-shrink: 0;">BUS TYPE</span></div>
+              <div style="border-width: 2px;border-style: solid;border-color: #222220;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+                <div style="border-width: 0px 1px 0px 0px;border-style: solid;border-color: #222220;background-color: #fff;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;width: 159.6px;min-height: 52px;position: relative;flex-shrink: 0;padding: 8px 10px;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 24px;font-size: 16px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 0.6px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">ORDINARY</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #77736d;width: 100%;position: relative;flex-shrink: 0;">Standard service</span></div>
+                </div>
+                <div style="border-width: 0px 1px 0px 0px;border-style: solid;border-color: #222220;background-color: #222220;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;width: 159.6px;min-height: 52px;position: relative;flex-shrink: 0;padding: 8px 10px;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 24px;font-size: 16px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 0.6px;color: #f5f0e7;width: 100%;position: relative;flex-shrink: 0;">AIRCON</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #f1c92b;width: 100%;position: relative;flex-shrink: 0;">Air-conditioned</span></div>
+                </div>
+                <div style="background-color: #fff;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;width: 159.6px;min-height: 52px;position: relative;flex-shrink: 0;padding: 8px 10px;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 24px;font-size: 16px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 0.6px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">DELUXE</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #77736d;width: 100%;position: relative;flex-shrink: 0;">Premium service</span></div>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex;flex-direction: column;row-gap: 6px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;">
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 50.1px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;width: max-content;position: relative;flex-shrink: 0;">FARE TYPE</span></div>
+              <div style="border-width: 2px;border-style: solid;border-color: #222220;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;width: 100%;position: relative;flex-shrink: 0;">
+                <div style="border-width: 0px 1px 0px 0px;border-style: solid;border-color: #222220;background-color: #222220;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;width: 239.4px;min-height: 52px;position: relative;flex-shrink: 0;padding: 8px 10px;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 24px;font-size: 16px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 0.6px;color: #f5f0e7;width: 100%;position: relative;flex-shrink: 0;">REGULAR</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #f1c92b;width: 100%;position: relative;flex-shrink: 0;">Full fare</span></div>
+                </div>
+                <div style="background-color: #fff;display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: center;width: 239.4px;min-height: 52px;position: relative;flex-shrink: 0;padding: 8px 10px;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 24px;font-size: 16px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 0.6px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">DISCOUNTED</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 8px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: #77736d;width: 100%;position: relative;flex-shrink: 0;">Student / Senior / PWD</span></div>
+                </div>
+              </div>
+            </div>
+            <div style="background-color: #c9221a;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;width: 100%;height: 50px;position: relative;flex-shrink: 0;padding: 0px 18px;">
+              <span class="text" style="display: inline;text-align: center;line-height: 27px;font-size: 18px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.1px;color: #fff;width: max-content;position: relative;flex-shrink: 0;margin: 0px auto 0px 0px;">CALCULATE FARE</span>
+              <div style="width: 26.1px;height: 37.5px;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: center;line-height: 37.5px;font-size: 25px;font-family: Inter, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.1px;color: #fff;left: calc(-12px + 50%);top: -1px;width: max-content;position: absolute;">→</span></div>
+            </div>
+          </div>
+          <div style="transform-origin: 0 0;transform: rotate(-4.5deg);left: calc(-625.5px + 50%);bottom: 175.7px;width: 526.6px;height: 199px;position: absolute;">
+            <div style="border-width: 1px;border-style: solid;border-color: #000;background-color: #f1c92b;left: calc(-266.9px + 50%);bottom: 0.9px;width: 537px;height: 170.1px;position: absolute;mask-image: url(&quot;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTMzIiBoZWlnaHQ9IjE4OS40Nzg5MTIzNTM1MTU2MiIgdmlld0JveD0iMCAwIDUzMyAxODkuNDc4OTEyMzUzNTE1NjIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHN0eWxlPSJsZWZ0OiBjYWxjKC0yNjYuM3B4ICsgNTAlKTtib3R0b206IC0wLjVweDt0cmFuc2Zvcm06IG1hdHJpeCgxLDAsMCwxLDAsMCk7dHJhbnNmb3JtLW9yaWdpbjogMCAwOyI+PGcgaWQ9Im1hc2tfdW5kZWZpbmVkIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIwIiB3aWR0aD0iNTMyLjc5NjkzNjAzNTE1NjIiIGhlaWdodD0iMTg5LjQ3ODkxMjM1MzUxNTYyIiBzdHlsZT0ibWFzay10eXBlOiBhbHBoYTsiPjxnPjxwYXRoIGQ9Ik0wIDBINTMyLjc5NjlWODEuNDc1OUw1MjQuODA1IDk0LjczOTUgNTMyLjc5NjkgMTA4LjAwM1YxODkuNDc4OUgwVjEwOC4wMDNMNy45OTIgOTQuNzM5NSAwIDgxLjQ3NTlWMFoiIHN0eWxlPSJmaWxsLXJ1bGU6IG5vbnplcm87ZmlsbDogIzAwMDsiIC8+PC9nPjwvZz48L3N2Zz4=&quot;);mask-repeat: no-repeat;mask-type: alpha;mask-position: 0.6px -18px;">
+              <div style="display: flex;flex-direction: row;grid-column-gap: 0px;align-items: center;justify-content: flex-start;left: 20px;top: 16px;width: 158.9px;height: 33.1px;position: absolute;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 16px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;width: max-content;position: relative;flex-shrink: 0;">ESTIMATED FARE</span></div>
+              <div style="left: 20px;top: 44.7px;width: 497.1px;height: 56.1px;position: absolute;"><span class="text" style="display: inline;text-align: left;line-height: 24px;font-size: 48px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;left: 0px;top: 17.5px;width: 13.2px;position: absolute;">₱</span><span class="text" style="display: inline;text-align: left;line-height: 60.5px;font-size: 60.5px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.2px;color: #222220;left: 33.8px;top: 12.2px;width: 47.5px;position: absolute;">—</span></div>
+              <div style="border-width: 1px 0px 0px;border-style: dashed;border-color: #514710;display: flex;flex-direction: row;grid-column-gap: 0px;align-items: start;justify-content: center;left: 20px;top: 108.1px;width: 497px;position: absolute;padding: 7px 0px 0px;">
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 134.2px;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 10.5px;font-size: 7px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.1px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">BUS TYPE</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 15px;font-size: 15px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #222220;width: 100%;position: relative;flex-shrink: 0;">AIRCON</span></div>
+                </div>
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 123px;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 10.5px;font-size: 7px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.1px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">FARE TYPE</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 15px;font-size: 15px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 700;font-stretch: 100%;color: #222220;width: 100%;position: relative;flex-shrink: 0;">REG</span></div>
+                </div>
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 141.6px;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 10.5px;font-size: 7px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.1px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">STARTING LOCATION</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 15px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;text-transform: uppercase;color: #222220;width: max-content;position: relative;flex-shrink: 0;">Ayala</span></div>
+                </div>
+                <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 94.6px;position: relative;flex-shrink: 0;">
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 10.5px;font-size: 7px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: 1.1px;color: #222220;width: 100%;position: relative;flex-shrink: 0;">DESTINATION</span></div>
+                  <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 12px;font-size: 15px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;text-transform: uppercase;color: #222220;width: max-content;position: relative;flex-shrink: 0;">Ayala</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="overflow: hidden;left: 60.5px;top: 800px;width: 100px;height: 100px;position: absolute;"></div>
+          <div style="left: 81.5px;top: 18.2%;bottom: 46.3%;width: 619.2px;height: 35.5%;position: absolute;">
+            <div style="border-width: 0px 0px 0px 4px;border-style: solid;border-color: #f1c92b;left: 7px;top: 310px;right: 283.2px;width: calc(-290.2px + 100%);height: 18px;position: absolute;"><span class="text" style="display: inline;text-align: left;line-height: 18.2px;font-size: 14px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;color: rgba(245,240,231,0.66);left: 14.5px;top: -1px;width: 354px;position: absolute;">No guesswork. Just the right fare, every ride.</span></div>
+            <div style="display: flex;flex-direction: column;row-gap: 0.5px;align-items: start;justify-content: flex-start;left: 0px;top: 59.3px;right: 0px;width: 100%;position: absolute;">
+              <span class="text" style="display: inline;text-align: left;line-height: 108.9px;font-size: 139.7px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: -3.5px;color: #f5f0e7;width: max-content;position: relative;flex-shrink: 0;">BUS FARE</span>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: 100%;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 108.9px;font-size: 139.7px;font-family: Anton, system-ui, sans-serif;font-weight: 400;font-stretch: 100%;letter-spacing: -3.5px;color: #ec2e24;width: 100%;position: relative;filter: drop-shadow(5px 5px 0px #f1c92b);flex-shrink: 0;">BUILDER</span></div>
+            </div>
+            <div style="display: flex;flex-direction: row;grid-column-gap: 12px;align-items: center;justify-content: flex-start;left: 0px;top: 0px;right: 0px;width: 100%;position: absolute;">
+              <div style="width: 25px;height: 31px;position: relative;flex-shrink: 0;">
+                <div style="background-color: #ec2e24;left: 0px;top: calc(-15.5px + 50%);width: 25px;height: 31px;position: absolute;mask-image: url(&quot;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMzEiIHZpZXdCb3g9IjAgMCAyNSAzMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9ImxlZnQ6IDBweDt0b3A6IGNhbGMoLTE1LjVweCArIDUwJSk7dHJhbnNmb3JtOiBtYXRyaXgoMSwwLDAsMSwwLDApO3RyYW5zZm9ybS1vcmlnaW46IDAgMDsiPjxnIGlkPSJtYXNrX3VuZGVmaW5lZCIgbWFza1VuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iMCIgeT0iMCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjMxIiBzdHlsZT0ibWFzay10eXBlOiBhbHBoYTsiPjxnPjxwYXRoIGQ9Ik0wIDBIMjVWMzFMMTIuNSAyMy41NiAwIDMxVjBaIiBzdHlsZT0iZmlsbC1ydWxlOiBub256ZXJvO2ZpbGw6ICMwMDA7IiAvPjwvZz48L2c+PC9zdmc+&quot;);mask-repeat: no-repeat;mask-type: alpha;mask-position: 0px 0px;"></div>
+              </div>
+              <div style="display: flex;flex-direction: column;row-gap: 0px;align-items: start;justify-content: flex-start;width: min-content;position: relative;flex-shrink: 0;"><span class="text" style="display: inline;text-align: left;line-height: 45.4px;font-size: 30.2px;font-family: &quot;Space Grotesk&quot;, system-ui, sans-serif;font-weight: 800;font-stretch: 100%;letter-spacing: 2.7px;color: #f1c92b;width: max-content;position: relative;flex-shrink: 0;">FAIR FARES</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
