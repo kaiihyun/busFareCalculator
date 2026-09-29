@@ -1,0 +1,308 @@
+:root {
+  --ink: #222220; --cream: #f5f0e7; --red: #ec2e24; --red-btn: #c9221a;
+  --yellow: #f1c92b; --muted: #77736d;
+  --tan: #ebe5d9; --tan-border: rgba(34,34,32,.2);
+  --display: Anton, system-ui, sans-serif;
+  --text: "Space Grotesk", system-ui, sans-serif;
+  --gap: clamp(1.25rem, 4vw, 3rem);
+  --label-size: clamp(.75rem, .7rem + .3vw, .9rem);
+}
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+body {
+  min-height: 100vh; min-height: 100dvh;
+  background: var(--ink); color: var(--ink);
+  font-family: var(--text);
+  overflow-x: clip; position: relative;
+}
+button { border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
+svg { display: block; }
+
+/* ---------- Layout ---------- */
+.page {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 74rem; margin-inline: auto;
+  padding: clamp(1.5rem, 5vw, 4rem) clamp(1rem, 5vw, 4rem) 1.5rem;
+  display: grid; gap: var(--gap);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "copy" "ticket" "stub" "rule";
+}
+.copy   { grid-area: copy; container-type: inline-size; }
+.stub   { grid-area: stub; container-type: inline-size; }
+.ticket-wrap { grid-area: ticket; position: relative; width: 100%; max-width: 33.25rem; justify-self: center; align-self: start; margin-top: 1rem; }
+.rule   { grid-area: rule; }
+
+/* ---------- Page-load entrance ---------- */
+@keyframes flyInTop    { from { opacity: 0; transform: translateY(-2.5rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes flyInRight  { from { opacity: 0; transform: translateX(3.5rem); } to { opacity: 1; transform: translateX(0); } }
+@keyframes flyInBottom { from { opacity: 0; transform: translateY(3rem); } to { opacity: 1; transform: translateY(0); } }
+
+.copy        { animation: flyInTop .6s cubic-bezier(.19,1,.22,1) both; }
+.ticket-wrap { animation: flyInRight .6s .08s cubic-bezier(.19,1,.22,1) both; }
+.stub        { animation: flyInBottom .6s .16s cubic-bezier(.19,1,.22,1) both; }
+@media (min-width: 60rem) {
+  .page {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 33.25rem);
+    grid-template-areas: "copy ticket" "stub ticket" "rule rule";
+    align-content: center; min-height: 100dvh;
+    column-gap: clamp(.5rem, 1.5vw, 1.25rem); /* tighter than the row gap, pulls the ticket toward the stub */
+  }
+  .stub { align-self: start; }
+  .ticket-wrap { margin-left: -1.25rem; margin-top: 2rem; } /* subtle shift toward the stub and down; panel still has room to open on the right */
+}
+
+/* ---------- Headline ---------- */
+.kicker { display: flex; align-items: center; gap: .75rem; font-size: clamp(1.1rem, 6cqw, 1.9rem); font-weight: 800; letter-spacing: .09em; color: var(--yellow); }
+.bookmark { width: .8em; height: 1em; background: var(--red); flex-shrink: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%); }
+.title { display: flex; flex-direction: column; margin-top: .5rem; font-family: var(--display); font-weight: 400;
+  font-size: clamp(3.25rem, 19cqw, 8.75rem); line-height: .78; letter-spacing: -.025em; color: var(--cream); }
+.title span { display: block; padding-block: .06em; }
+.accent { color: var(--red); filter: drop-shadow(.04em .04em 0 var(--yellow)); }
+.tagline { margin-top: 1.5rem; padding-left: .9rem; border-left: 4px solid rgba(241,201,43,.5); font-size: clamp(.72rem, .66rem + .3vw, .875rem); line-height: 1.35; color: rgba(245,240,231,.66); max-width: 50ch; }
+.tagline strong { color: var(--cream); font-weight: 700; }
+.tagline + .tagline { margin-top: .85rem; }
+@media (max-width: 30rem) {
+  .tagline { font-size: .7rem; }
+}
+
+/* ---------- Ticket stub ---------- */
+.stub-inner {
+  width: 100%; max-width: 33.5rem;
+  background: var(--yellow);
+  padding: 1rem clamp(1rem, 5cqw, 1.5rem);
+  transform: rotate(-2.5deg);
+  clip-path: polygon(0 0, 100% 0, 100% 42%, calc(100% - .5rem) 50%, 100% 58%, 100% 100%, 0 100%, 0 58%, .5rem 50%, 0 42%);
+}
+.stub-label { font-size: clamp(.8rem, 3.6cqw, 1rem); font-weight: 600; letter-spacing: .075em; color: #57534a; }
+.price { display: flex; align-items: baseline; gap: .35em; margin: .5rem 0 .25rem; line-height: 1;
+  font-family: var(--display); letter-spacing: .02em; font-size: clamp(2.75rem, 12cqw, 3.8rem);
+  font-variant-numeric: tabular-nums; }
+.cur { font-size: .8em; }
+#fareAmount.rolling { opacity: .75; }
+.status { min-height: 1.1rem; margin-bottom: .6rem; font-size: clamp(.7rem, 3cqw, .8rem); font-weight: 700; color: #4a4210; overflow-wrap: anywhere; }
+
+/* 2 x 2, left-aligned */
+.details {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem 1rem; padding-top: .75rem; border-top: 1px dashed #514710;
+  text-align: left; justify-items: start;
+}
+.details > div { min-width: 0; width: 100%; }
+.details dt { font-size: clamp(.58rem, 2.4cqw, .68rem); font-weight: 600; letter-spacing: .1em; line-height: 1.2; color: #57534a; }
+.details dd { margin-top: .2rem; font-size: clamp(.9rem, 4cqw, 1.05rem); font-weight: 800; line-height: 1.2; text-transform: uppercase; overflow-wrap: anywhere; }
+@container (max-width: 16rem) { .details { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Ticket form ---------- */
+.ticket {
+  position: relative; z-index: 2; container: ticket / inline-size;
+  width: 100%;
+  background: var(--cream);
+  padding: 1.375rem clamp(1rem, 4.5vw, 1.5rem) 1.15rem;
+  display: flex; flex-direction: column; gap: 1.1rem;
+  transform: rotate(1deg);
+}
+
+/* ---------- Routes side panel (the red rectangle behind the ticket) ---------- */
+.routes-panel {
+  position: absolute; top: 13px; left: 13px; right: -13px; bottom: -13px;
+  z-index: 1; overflow: hidden;
+  background: var(--red);
+  transform: rotate(1deg) translateX(0); /* same tilt as the ticket */
+  transition: transform .4s cubic-bezier(.19,1,.22,1);
+}
+.ticket-wrap.is-open .routes-panel { transform: rotate(1deg) translateX(30%); }
+
+.routes-content { position: absolute; inset: 0; display: flex; justify-content: flex-end; }
+.routes-inner {
+  width: 34%; min-width: 8rem; height: 100%;
+  padding: 2.5rem .75rem .75rem 1rem;
+  overflow: hidden;                 /* no scrollbar while closed */
+  color: transparent;               /* text invisible against the red panel while closed */
+  pointer-events: none;
+  transition: color .2s;
+}
+.ticket-wrap.is-open .routes-inner {
+  overflow-y: auto;                 /* scrollbar only appears once open */
+  color: var(--cream);
+  pointer-events: auto;
+}
+.routes-inner h3 { font-size: .7rem; font-weight: 800; letter-spacing: .14em; margin-bottom: .6rem; opacity: .85; }
+.routes-inner ul { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+.routes-inner li { font-size: .8rem; font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+
+.routes-tab {
+  position: absolute; top: 0; right: .75rem; z-index: 3;
+  transform: translateY(-72%) rotate(-3deg);
+  background: var(--red); color: var(--cream);
+  font: 700 .7rem var(--text); letter-spacing: .16em;
+  padding: .55rem .65rem .4rem; border-radius: 4px 4px 0 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,.2);
+  transition: background-color .15s, transform .15s;
+}
+.routes-tab:hover { background: var(--red-btn); }
+.routes-tab:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.ticket-wrap.is-open .routes-tab { transform: translateY(-72%) rotate(0deg); }
+
+@media (max-width: 26rem) {
+  .routes-inner { padding-top: 2rem; }
+  .routes-tab { right: .4rem; font-size: .62rem; }
+}
+
+/* Below 700px: drop the activation tab entirely. The red panel stays as a
+   backdrop behind the ticket, but with no tab it can never be opened, so it
+   never risks introducing horizontal scroll on small/medium screens. */
+@media (max-width: 700px) {
+  .routes-tab { display: none; }
+}
+.ticket-head { position: relative; display: flex; align-items: center; gap: .75rem; padding-bottom: 1.15rem; flex-wrap: wrap; }
+/* straight broken line, diagonal breaks (same pattern as the footer) */
+.ticket-head::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: repeating-linear-gradient(135deg, var(--yellow) 0 .45rem, transparent .45rem .75rem);
+}
+.ticket-icon { width: 1.25rem; flex-shrink: 0; align-self: flex-start; }
+.ticket-head > div { flex: 1 1 12rem; min-width: 0; }
+.ticket-head h2 { font-size: clamp(.95rem, .85rem + .6vw, 1.15rem); font-weight: 800; letter-spacing: .09em; }
+.ticket-head p { font-size: .65rem; color: #75736e; }
+.tag { border: 1px solid #aaa69e; padding: .25rem .45rem; font-size: .55rem; font-weight: 700; letter-spacing: .1em; }
+
+.label, .group legend {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: clamp(.95rem, .87rem + .4vw, 1.15rem);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--muted);
+}
+
+.rate {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: .03em;
+}
+
+/* Location inputs = most prominent controls */
+.route { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: .625rem; align-items: end; }
+.field { display: flex; flex-direction: column; gap: .45rem; min-width: 0; }
+.input-wrap { position: relative; }
+.input-wrap input {
+  width: 100%; min-height: 3.25rem; padding: .5rem .75rem;
+  border: 1.5px solid rgba(34, 34, 32, .3); border-radius: 0; background: #fff;
+  font: 700 1rem var(--text); color: var(--ink);
+}
+.input-wrap input::placeholder { color: var(--muted); opacity: 1; }
+.input-wrap input:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.input-wrap input.invalid { border-color: var(--red-btn); }
+
+/* Autocomplete dropdown: dark gray, slightly transparent */
+.suggest {
+  position: absolute; z-index: 30; top: calc(100% + 4px); left: 0; right: 0;
+  list-style: none; overflow: hidden;
+  background: rgba(50, 50, 48, .93);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.14); border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.3);
+}
+.suggest[hidden] { display: none; }
+.suggest li { padding: .7rem .8rem; min-height: 2.75rem; display: flex; align-items: center;
+  font-size: 1rem; font-weight: 600; color: var(--cream); cursor: pointer; }
+.suggest li + li { border-top: 1px solid rgba(255,255,255,.08); }
+.suggest li:hover, .suggest li.active { background: rgba(255,255,255,.12); }
+.suggest .suggest-empty { cursor: default; font-weight: 500; font-style: italic; color: rgba(245,240,231,.75); }
+.suggest .suggest-empty:hover { background: none; }
+
+/* Swap button + tooltip */
+.swap { position: relative; width: 2.75rem; height: 2.75rem; margin-bottom: .25rem; background: var(--yellow); display: grid; place-items: center; }
+.swap svg { width: 1.2rem; }
+.swap:hover { background: #f5d654; }
+.swap:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.swap::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + .45rem); left: 50%; transform: translate(-50%, 3px);
+  padding: .3rem .55rem; border-radius: 3px;
+  background: rgba(50,50,48,.95); color: var(--cream);
+  font-size: .75rem; font-weight: 600; letter-spacing: .02em; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity .12s, transform .12s;
+}
+.swap:hover::after, .swap:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+
+/* when the swap button would wrap onto its own line: hide it, stack the inputs */
+@container ticket (max-width: 24rem) {
+  .route { grid-template-columns: minmax(0,1fr); }
+  .swap { display: none; }
+}
+
+/* ---------- Option cards (bus / fare type): separate, soft ---------- */
+.group { border: 0; min-width: 0; display: flex; flex-direction: column; gap: .5rem; }
+.route + .group { margin-top: .9rem; }
+.group legend { margin-bottom: .45rem; }
+.options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(7.25rem, 100%), 1fr)); gap: .5rem; }
+.options-2 { grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); }
+.option { position: relative; display: block; cursor: pointer; }
+.option input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.face {
+  display: flex; flex-direction: column; justify-content: center; height: 100%; min-height: 3.5rem;
+  padding: .5rem .75rem;
+  background: var(--tan); color: var(--ink);
+  border: 1.5px solid var(--tan-border); border-radius: 6px;
+  transition: background-color .12s, border-color .12s, color .12s;
+}
+.face b { font: 400 1rem/1.5 var(--display); letter-spacing: .04em; overflow-wrap: anywhere; }
+.face small { font-size: .65rem; line-height: 1.3; color: var(--muted); }
+.option:hover input:not(:checked) + .face { border-color: rgba(34,34,32,.4); background: #e6dfd1; }
+.option input:checked + .face { background: #46453f; border-color: #46453f; color: #fff; }
+.option input:checked + .face small { color: var(--yellow); }
+.option input:focus-visible + .face { outline: 3px solid var(--yellow); outline-offset: 2px; }
+
+/* ---------- Calculate button ---------- */
+.cta {
+  align-self: flex-end; width: fit-content; max-width: 100%; margin-top: .75rem;
+  display: flex; align-items: center; justify-content: center; gap: .85rem;
+  min-height: 3.25rem; padding: 0 1.4rem 0 1.1rem;
+  background: var(--red-btn); color: #fff;
+  font: 400 1.15rem var(--display); letter-spacing: .06em;
+  box-shadow: 0 4px 0 #7d120d;
+  transition: background-color .12s, box-shadow .12s, transform .12s, color .12s;
+}
+.cta:hover { background: #dc3a31; }
+.cta:active { background: #8f1712; color: #ffe3e0; transform: translateY(3px); box-shadow: 0 1px 0 #7d120d; }
+.cta:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+.cta span:first-child { font-family: Inter, var(--text); font-size: 1.4rem; }
+
+/* ---------- Footer rule & decoration ---------- */
+.rule { display: flex; align-items: center; gap: .9rem; }
+.rule span { font-size: .55rem; font-weight: 700; letter-spacing: .16em; color: rgba(245,240,231,.45); white-space: nowrap; }
+.rule i { flex: 1; height: 5px; opacity: .65; background: repeating-linear-gradient(135deg, var(--red) 0 .5rem, transparent .5rem .875rem); }
+.deco { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.deco i { position: absolute; display: block; }
+.d-ring { width: min(32rem, 70vw); aspect-ratio: 1; top: -12%; right: -10%; border: clamp(1.5rem, 5vw, 2.7rem) solid var(--red); border-radius: 50%; opacity: .14; }
+.d-tri { width: 7rem; aspect-ratio: 1; top: 1rem; left: 3rem; background: var(--yellow); opacity: .08; transform: rotate(14deg); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.d-sq { width: 2.8rem; aspect-ratio: 1; left: 2rem; top: 42%; border: 8px solid var(--red); opacity: .1; transform: rotate(-18deg); }
+
+/* ---------- Subtle, slow decoration animation ---------- */
+@keyframes driftSpin  { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes swayTri    { 0%, 100% { transform: rotate(14deg); }  50% { transform: rotate(22deg); } }
+@keyframes swaySq     { 0%, 100% { transform: rotate(-18deg); } 50% { transform: rotate(-26deg); } }
+@keyframes swayPlus   { 0%, 100% { transform: rotate(12deg); }  50% { transform: rotate(19deg); } }
+@keyframes bobCircle  { 0%, 100% { transform: translateY(0); }  50% { transform: translateY(-.6rem); } }
+@keyframes driftBars  { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(.6rem); } }
+
+.d-ring   { animation: driftSpin 70s linear infinite; }
+.d-tri    { animation: swayTri 9s ease-in-out infinite; }
+.d-sq     { animation: swaySq 10s ease-in-out infinite; }
+
+.d-circle { width: 9rem; aspect-ratio: 1; left: -3rem; bottom: 8%; border: 1.4rem solid var(--yellow); border-radius: 50%; opacity: .07; animation: bobCircle 8s ease-in-out infinite; }
+.d-plus { width: 4rem; aspect-ratio: 1; right: 8%; bottom: 14%; opacity: .09; transform: rotate(12deg);
+  background: linear-gradient(var(--cream), var(--cream)) center / 100% 1rem no-repeat, linear-gradient(var(--cream), var(--cream)) center / 1rem 100% no-repeat;
+  animation: swayPlus 11s ease-in-out infinite; }
+.d-bars { width: 8rem; height: 5rem; left: 38%; top: 3%; opacity: .09; background: repeating-linear-gradient(135deg, var(--red) 0 .6rem, transparent .6rem 1.2rem); animation: driftBars 12s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cta, .face, .swap::after { transition: none; }
+  .copy, .ticket, .stub { animation: none; }
+  .d-ring, .d-tri, .d-sq, .d-circle, .d-plus, .d-bars { animation: none; }
+}

@@ -31,8 +31,6 @@ numCodes.set("Iligan",  85);
 
 
 
-
-
 function DisplayRate(){
     let rateDisplayer = document.getElementById("rateDisplay");
     let chosenRate = document.querySelector('input[name="busType"]:checked').value;
@@ -45,8 +43,6 @@ const busTypes = document.querySelectorAll('input[name="busType"]');
 busTypes.forEach(busType => {
     busType.addEventListener("change", DisplayRate);
 });
-
-
 
 function Capitalize(name){
     if (name == null){
