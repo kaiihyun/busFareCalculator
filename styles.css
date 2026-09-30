@@ -2,10 +2,19 @@
   --ink: #222220; --cream: #f5f0e7; --red: #ec2e24; --red-btn: #c9221a;
   --yellow: #f1c92b; --muted: #77736d;
   --tan: #ebe5d9; --tan-border: rgba(34,34,32,.2);
+  --inputgrey: #4a4339;
   --display: Anton, system-ui, sans-serif;
   --text: "Space Grotesk", system-ui, sans-serif;
   --gap: clamp(1.25rem, 4vw, 3rem);
   --label-size: clamp(.75rem, .7rem + .3vw, .9rem);
+
+  /* Shared typography, sourced from the stub's own text so the stub, the
+     option buttons, and the ticket builder's headings/labels all read at
+     one consistent scale. Defined in vw (not cqw) so the same value
+     renders the same size in both the stub and the ticket builder,
+     which are two different containers. */
+  --fs-option-title: clamp(.8rem, .74rem + .3vw, .92rem);  /* stub's value text: ORDINARY, DELUXE, etc. */
+  --fs-option-desc:  clamp(.56rem, .52rem + .2vw, .64rem); /* stub's label text: BUS TYPE, FARE TYPE, etc. */
 }
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
@@ -42,13 +51,19 @@ svg { display: block; }
 .stub        { animation: flyInBottom .6s .16s cubic-bezier(.19,1,.22,1) both; }
 @media (min-width: 60rem) {
   .page {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 29.5rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* equal columns: ticket width matches the header/stub column */
     grid-template-areas: "copy ticket" "stub ticket";
     align-content: center; min-height: 100dvh;
     column-gap: clamp(.5rem, 1.5vw, 1.25rem); /* tighter than the row gap, pulls the ticket toward the stub */
   }
   .stub { align-self: start; }
-  .ticket-wrap { margin-left: -1.25rem; align-self: end; } /* bottom edge lines up with the stub's bottom edge */
+  .ticket-wrap {
+    max-width: none;              /* free to fill the full (now equal) column width */
+    margin-left: -1.25rem;
+    align-self: stretch;          /* top lines up with the header's top, bottom with the stub's bottom */
+    display: flex; flex-direction: column;
+  }
+  .ticket { flex: 1 1 auto; justify-content: space-between; } /* fills the taller wrapper; its own sections spread out to use the space */
 }
 
 /* ---------- Headline ---------- */
@@ -87,8 +102,8 @@ svg { display: block; }
   text-align: left; justify-items: start;
 }
 .details > div { min-width: 0; width: 100%; }
-.details dt { font-size: clamp(.56rem, 2.2cqw, .64rem); font-weight: 600; letter-spacing: .1em; line-height: 1.2; color: #57534a; }
-.details dd { margin-top: .15rem; font-size: clamp(.8rem, 3.5cqw, .92rem); font-weight: 800; line-height: 1.2; text-transform: uppercase; overflow-wrap: anywhere; }
+.details dt { font-size: var(--fs-option-desc); font-weight: 600; letter-spacing: .1em; line-height: 1.2; color: #57534a; }
+.details dd { margin-top: .15rem; font-size: var(--fs-option-title); font-weight: 800; line-height: 1.2; text-transform: uppercase; overflow-wrap: anywhere; }
 @container (max-width: 16rem) { .details { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- Ticket form ---------- */
@@ -156,22 +171,24 @@ svg { display: block; }
 }
 .ticket-icon { width: 1rem; flex-shrink: 0; align-self: flex-start; }
 .ticket-head > div { flex: 1 1 12rem; min-width: 0; }
-.ticket-head h2 { font-size: clamp(.85rem, .78rem + .5vw, 1rem); font-weight: 800; letter-spacing: .09em; }
-.ticket-head p { font-size: .62rem; color: #75736e; }
+.ticket-head h2 { font-size: var(--fs-option-title); font-weight: 800; letter-spacing: .09em; /* own character distancing, unlike the shared size */ }
+.ticket-head p { font-size: var(--fs-option-desc); font-weight: 600; color: #75736e; }
 .label, .group legend {
     display: block;
     padding: 0;
     margin: 0;
-    font-size: clamp(.82rem, .75rem + .35vw, .98rem);
+    font-family: var(--text);   /* matches Calculate Fare's font */
+    font-weight: 1000;
+    font-size: 1rem;               /* matches Calculate Fare's size */
     line-height: 1.1;
-    font-weight: 700;
-    letter-spacing: .1em;
-    color: var(--ink);
+    letter-spacing: .1em;          /* kept on its own, not shared with Calculate Fare */
+    color: var(--ink);             /* Calculate Fare itself stays white; labels stay ink black */
 }
 .bus-type-legend { display: flex; align-items: baseline; flex-wrap: wrap; gap: .55rem; }
 
 .rate {
-    font-size: .68rem;
+    display: none; /* rate display removed */
+    font-size: var(--fs-option-desc);
     font-weight: 600;
     color: var(--yellow);
     letter-spacing: .03em;
@@ -183,21 +200,21 @@ svg { display: block; }
 .input-wrap { position: relative; }
 .input-wrap input {
   width: 100%; min-height: 2.75rem; padding: .4rem .65rem;
-  border: 1.5px solid rgba(34, 34, 32, .3); border-radius: 0; background: #fff;
-  font: 700 .92rem var(--text); color: var(--ink);
+  border: 0.75px solid rgba(34, 34, 32, 0.25); border-radius: 0.2em; background: #fff;
+  font: 800 0.95rem var(--text); color: var(--inputgrey);
 }
-.input-wrap input::placeholder { color: var(--muted); opacity: 1; }
-.input-wrap input:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
-.input-wrap input.invalid { border-color: var(--red-btn); }
+.input-wrap input::placeholder { color: var(--muted); opacity: 0.25; }
+.input-wrap input:focus-visible {  outline: 3px solid var(--yellow); outline-offset: 2px; }
+.input-wrap input.invalid { color: var(--red); border-color: var(--red-btn); }
 
 /* Autocomplete dropdown: dark gray, slightly transparent */
 .suggest {
   position: absolute; z-index: 30; top: calc(100% + 4px); left: 0; right: 0;
   list-style: none; overflow: hidden;
-  background: rgba(50, 50, 48, .93);
+  background: rgba(50, 48, 48, 0.801);
   -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,.14); border-radius: 4px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.3);
+  border: 0px solid rgba(255,255,255,.14); border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.173);
 }
 .suggest[hidden] { display: none; }
 .suggest li { padding: .7rem .8rem; min-height: 2.75rem; display: flex; align-items: center;
@@ -229,27 +246,33 @@ svg { display: block; }
 }
 
 /* ---------- Option cards (bus / fare type): separate, soft ---------- */
-.group { border: 0; min-width: 0; display: flex; flex-direction: column; gap: .4rem; }
-.route + .group { margin-top: .7rem; }
+.group { border: 0; min-width: 0; display: flex; flex-direction: column; gap: .4rem;  }
+.route, .group { margin-bottom: 0.7rem; }
 .group legend { margin-bottom: .35rem; }
 .options, .options-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: .4rem;
+}
+.options .option, .options-2 .option {
+  flex: 1 1 calc(33.333% - .27rem); /* basis for 3 per row; flex-grow lets a shorter row (1 or 2 items) fill 100%/50% */
+  min-width: 6.5rem;
 }
 .option { position: relative; display: block; cursor: pointer; }
 .option input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 .face {
+
   display: flex; flex-direction: column; justify-content: center; height: 100%; min-height: 2.9rem;
   padding: .4rem .55rem;
-  background: var(--tan); color: #4f4a42;
-  border: 1.5px solid var(--tan-border); border-radius: 6px;
+  background: var(--tan); 
+  color: var(--inputgrey);
+  border: 0px solid var(--tan-border); border-radius: 6px;
   transition: background-color .12s, border-color .12s, color .12s;
 }
-.face b { font: 400 .82rem/1.4 var(--display); letter-spacing: .03em; overflow-wrap: anywhere; }
-.face small { font-size: .58rem; line-height: 1.25; color: var(--muted); }
+.face b { font-family: var(--display); font-weight: 100; font-size: var(--fs-option-title); line-height: 1.3; letter-spacing: .08em; overflow-wrap: anywhere; }
+.face small { font-size: var(--fs-option-desc); font-weight: 600; line-height: 1.25; color: var(--muted); }
 .option:hover input:not(:checked) + .face { border-color: rgba(34,34,32,.4); background: #e6dfd1; }
-.option input:checked + .face { background: #46453f; border-color: #46453f; color: #fff; }
+.option input:checked + .face { background: var(--inputgrey); color: var(--cream); }
 .option input:checked + .face small { color: var(--yellow); }
 .option input:focus-visible + .face { outline: 3px solid var(--yellow); outline-offset: 2px; }
 

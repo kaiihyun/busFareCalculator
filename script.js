@@ -245,7 +245,7 @@ function animateFare(finalFare, reactionMessage){
    One independent dropdown per input; matches location NAMES that start
    with the typed text, case-insensitive, max 4.
    ===================================================================== */
-const MAX_SUGGESTIONS = 4;
+const MAX_SUGGESTIONS = 3;
 
 function setupAutocomplete(input, list){
     let items = [], active = -1;
