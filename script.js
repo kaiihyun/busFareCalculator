@@ -11,9 +11,11 @@ const minFare = 15;
 let fare = minFare;
 const rate = new Map();
 //setting the number codes for each location
-rate.set("ordinary", 2.25);
+rate.set("ordinary", 2.20);
 rate.set("airconditioned", 2.45);
 rate.set("deluxe", 2.60);
+rate.set("superdeluxe", 2.70);
+rate.set("luxury", 3.35);
 
 
 rate.set("regular", 1.00);
@@ -164,7 +166,7 @@ const inputEnd   = document.getElementById("endLocation");
 const fareLabel  = document.getElementById("fareLabel");
 const fareAmount = document.getElementById("fareAmount");
 
-const BUS_LABELS  = { ordinary: "Ordinary", airconditioned: "Air-Conditioned", deluxe: "Deluxe" };
+const BUS_LABELS  = { ordinary: "Ordinary", airconditioned: "Air-Conditioned", deluxe: "Deluxe", superdeluxe: "Super Deluxe", luxury: "Luxury" };
 const FARE_LABELS = { regular: "Regular", sp: "SP" };
 
 // Returns the database name for typed text, or null if it isn't a real location.
