@@ -2,7 +2,7 @@
   --ink: #222220; --cream: #f5f0e7; --red: #ec2e24; --red-btn: #c9221a;
   --yellow: #f1c92b; --muted: #77736d;
   --tan: #ebe5d9; --tan-border: rgba(34,34,32,.2);
-  --inputgrey: #4a4339;
+  --inputgrey: #453f37;
   --display: Anton, system-ui, sans-serif;
   --text: "Space Grotesk", system-ui, sans-serif;
   --gap: clamp(1.25rem, 4vw, 3rem);
@@ -182,7 +182,8 @@ svg { display: block; }
     font-size: 1rem;               /* matches Calculate Fare's size */
     line-height: 1.1;
     letter-spacing: .1em;          /* kept on its own, not shared with Calculate Fare */
-    color: var(--ink);             /* Calculate Fare itself stays white; labels stay ink black */
+    color: var(--inputgrey);
+    opacity: 0.75;             /* Calculate Fare itself stays white; labels stay ink black */
 }
 .bus-type-legend { display: flex; align-items: baseline; flex-wrap: wrap; gap: .55rem; }
 
@@ -278,16 +279,16 @@ svg { display: block; }
 
 /* ---------- Calculate button ---------- */
 .cta {
-  align-self: flex-end; width: fit-content; max-width: 100%; margin-top: .6rem;
+  width: 100%; max-width: 100%; margin-top: .6rem;
   display: flex; align-items: center; justify-content: center; gap: .7rem;
   min-height: 2.75rem; padding: 0 1.15rem 0 .9rem;
-  background: var(--red-btn); color: #fff;
+  background: var(--yellow); color: var(--ink);
   font: 400 1rem var(--display); letter-spacing: .06em;
-  box-shadow: 0 4px 0 #7d120d;
+  box-shadow: 0 4px 0 #957a0f;
   transition: background-color .12s, box-shadow .12s, transform .12s, color .12s;
 }
-.cta:hover { background: #dc3a31; }
-.cta:active { background: #8f1712; color: #ffe3e0; transform: translateY(3px); box-shadow: 0 1px 0 #7d120d; }
+.cta:hover { background: #e2e056;  box-shadow: 0 4px 0 #c6be2e; }
+.cta:active { background: #756d56; color: #ffe3e0; transform: translateY(3px); box-shadow: 0 1px 0 var(--inputgrey) }
 .cta:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .cta span:first-child { font-family: Inter, var(--text); font-size: 1.2rem; }
 
