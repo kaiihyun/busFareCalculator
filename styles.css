@@ -248,7 +248,7 @@ svg { display: block; }
 
 /* ---------- Option cards (bus / fare type): separate, soft ---------- */
 .group { border: 0; min-width: 0; display: flex; flex-direction: column; gap: .4rem;  }
-.route, .group { margin-bottom: 0.7rem; }
+.route, .group { margin-bottom: 0.75rem; }
 .group legend { margin-bottom: .35rem; }
 .options, .options-2 {
   display: flex;
