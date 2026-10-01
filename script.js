@@ -19,7 +19,7 @@ rate.set("luxury", 3.35);
 
 
 rate.set("regular", 1.00);
-rate.set("sp", 0.80);
+rate.set("sp", 0.20);
 
 
 const numCodes = new Map();
@@ -47,10 +47,39 @@ numCodes.set("Liangan East", 121);
 numCodes.set("Liangan West", 122);
 numCodes.set("Claro M. Recto", 123);
 numCodes.set("Maigo", 124);
+numCodes.set("Balagatasa", 125);
+//126
+numCodes.set("Segapod", 127);
+//128
+numCodes.set("Kulasihan", 129);
+numCodes.set("Muntay", 130);
+numCodes.set("Rebucon", 131);
+numCodes.set("Austin Heights", 132);
+
 numCodes.set("Kolambugan", 133);
+numCodes.set("Libertad, Kolambugan", 134);
+numCodes.set("Titunod", 135);
+numCodes.set("Caromatan", 137);
+numCodes.set("Mukas", 139);
+numCodes.set("Tabigue", 140);
+numCodes.set("Manga", 141);
+
 numCodes.set("Mukas", 140);
+numCodes.set("Simbuco", 143);
+numCodes.set("Tangueguiron", 145);
+numCodes.set("Pigcarangan", 147);
+numCodes.set("Bulog", 148);
+
 numCodes.set("Tubod", 151);
+numCodes.set("Baroy", 153);
+numCodes.set("Raw-an", 156);
+numCodes.set("Magpatao", 158 );
+numCodes.set("Lanipao", 160);
+numCodes.set("Tenazas", 162);
+numCodes.set("Abaga", 163);
+
 numCodes.set("Maranding", 165);
+numCodes.set("Kapatagan", 167);
 
 const messages = [
             "Is it really that expensive?",
