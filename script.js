@@ -19,7 +19,7 @@ rate.set("luxury", 3.35);
 
 
 rate.set("regular", 1.00);
-rate.set("sp", 0.20);
+rate.set("sp", 0.80);
 
 
 const numCodes = new Map();
